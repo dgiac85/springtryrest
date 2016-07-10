@@ -17,7 +17,7 @@ public class UserDAO
 	@Autowired
 	protected JdbcTemplate jdbcTemplate;
 	
-	public List<com.delfinigiacomo.model.Account> getUsers()
+	public List<Account> getUsers()
 	{
 		String query = "select * from users";
 		
