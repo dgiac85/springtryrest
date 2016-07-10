@@ -1,0 +1,20 @@
+{
+  "groups": [{
+    "name": "app",
+    "type": "com.delfinigiacomo.config.Config",
+    "sourceType": "com.delfinigiacomo.config.Config"
+  }],
+  "properties": [
+    {
+      "name": "app.description",
+      "type": "java.lang.String",
+      "sourceType": "com.delfinigiacomo.config.Config"
+    },
+    {
+      "name": "app.name",
+      "type": "java.lang.String",
+      "sourceType": "com.delfinigiacomo.config.Config"
+    }
+  ],
+  "hints": []
+}
