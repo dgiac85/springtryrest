@@ -1,5 +1,7 @@
 package com.delfinigiacomo.dao;
 
+/*UserDAO è la classe che fa da Data Access Object per gli utenti*/
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -19,7 +21,7 @@ public class UserDAO
 	
 	public List<Account> getUsers()
 	{
-		String query = "select * from users";
+		String query = "select * from users, user_role where user_role.email = users.email";
 		
 		List<Account> users = jdbcTemplate.query(query, new RowMapper<Account>(){
 			public Account mapRow(ResultSet rs, int num) throws SQLException
@@ -29,6 +31,7 @@ public class UserDAO
 				u.setPassword(rs.getString("password"));
 				u.setFirstName(rs.getString("first_name"));
 				u.setLastName(rs.getString("last_name"));
+				u.setRole(rs.getString("role"));
 				u.setActive(rs.getInt("active"));
 				return u;
 			}
@@ -41,7 +44,7 @@ public class UserDAO
 	{
 		// Gets user's details and role from the database ...
 		String query = "select * from users, user_role where users.email = ? and user_role.email = users.email";
-		
+		//new Object[]{username} è il parametro da inviare e va messo nel queryForObject
 		Account u = jdbcTemplate.queryForObject(query, new Object[]{ username }, new RowMapper<Account>(){
 			public Account mapRow(ResultSet rs, int num) throws SQLException
 			{

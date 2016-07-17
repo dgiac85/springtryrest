@@ -30,3 +30,8 @@ public class Config {
 		this.description = description;
 	}
 }
+
+
+/*
+ * Si considerano i dati che hanno prefisso app in @ConfigurationProperties
+ */

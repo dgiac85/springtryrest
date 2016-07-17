@@ -20,4 +20,13 @@ public class EchoController
 		u.setRole(user.getAuthorities().iterator().next().getAuthority());
 		return u;
 	}	
+	
+	
+	/*
+	 * A quanto pare la echo usa una classe UserDetails di Spring
+	 * Dopo ciò usa una classe UserInfo e setta l'utente e il ruolo	 * 
+	 * UserInfo è un file che si trova all'interno del package Model
+	 * Quindi setta l'utente prendendo l'username e la password dall'istanza user della classe 
+	 * UserDetails
+	 * */
 }

@@ -64,11 +64,13 @@ public class MainController {
 			@ApiParam(name = "param2", value = "param2 description", required = true) @RequestParam("param2") String param2,
 			@ApiParam(name = "param3", value = "param3 description", required = true) @RequestParam("param3") String param3) throws Exception
 	{
-		LOG.info("ExecController method test invoked.");
+		LOG.info("ExecController method TEST invoked.");
 		Hashtable<String, String> ht = new Hashtable<String, String>();
+		
+		ht.put("PARAM3", param3);
 		ht.put("PARAM1", param1);
 		ht.put("PARAM2", param2);
-		ht.put("PARAM3", param3);
+		
 		return ht;
 	}
 	
@@ -77,7 +79,7 @@ public class MainController {
     public List<Account> getUsers() throws Exception
     {
     	LOG.info("MainController getUsers() method invoked ...");
-    	return userDAO.getUsers();
+    	return userDAO.getUsers(); //getUsers ritorna praticamente una lista di accounts
     }
     
 	@ApiOperation(notes="Method used for getting user's details", value = "/users", code=200)
