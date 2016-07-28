@@ -14,7 +14,7 @@ import org.springframework.security.web.csrf.CsrfFilter;
 @Configuration
 @EnableWebSecurity
 @EnableAutoConfiguration
-public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter 
+public class SecurityConfig extends WebSecurityConfigurerAdapter 
 {	
 	@Autowired
 	RestUserDetailService restUserDetailService;
@@ -22,18 +22,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
 	@Autowired
 	protected CORSFilter corsFilter;
 	
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception 
-	{
-		// This is for in-line authentication ...
-		// auth.inMemoryAuthentication().withUser("x").password("x").roles("USER");
-	}
+
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception 
 	{
 		http
 			// Disable CSRF protection ...
-			// .csrf().disable()
+			// .csrf().disable() //DA SPRING 3 il CSRF E' GIA INSERITO AUTOMATICAMENTE
 			.authorizeRequests()
 			.anyRequest()
 			.authenticated()

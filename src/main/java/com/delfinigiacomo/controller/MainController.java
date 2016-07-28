@@ -22,6 +22,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 import com.delfinigiacomo.config.Config;
+import com.delfinigiacomo.dao.MovieDAO;
 import com.delfinigiacomo.dao.UserDAO;
 import com.delfinigiacomo.model.Greeting;
 import com.delfinigiacomo.model.RequestException;
@@ -37,7 +38,7 @@ public class MainController {
 	
 	@Autowired
 	protected UserDAO userDAO;
-	
+		
 	private final static Logger LOG = LoggerFactory.getLogger(MainController.class.getName());
 	
 	@ApiOperation(notes="Method used for testing purposes", value = "/hello", code=200)
@@ -120,17 +121,5 @@ public class MainController {
 		return "{\"error\":\"" + ex.getMessage() + "\"}";
 	}
 	
-	//////////////////////////////////////////////////////////////////////////////
-	/*My Apis*////////////////////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////////////////
-	@ApiOperation(notes="Method used for getting the user's favourite movies list of a specific actor", value = "/moviesuserbyactor", code=200)
-	@RequestMapping(value = "/movieuserbyactor", method = RequestMethod.GET, produces="application/json")
-	public List<Movie>  moviesUserByActor(
-			@ApiParam(name = "email", value = "email", required = true) @RequestParam(name = "email", required=true) String email,
-			@ApiParam(name = "actor", value = "actor", required = true) @RequestParam(name = "actor", required=true) String actor
-			) throws Exception 
-	{
-		LOG.info("MainController getMoviesUserByActor method invoked ...");
-		return userDAO.getMoviesUserByActor(email,actor);
-	}
+	
 }

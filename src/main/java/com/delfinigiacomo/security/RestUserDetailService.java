@@ -17,6 +17,8 @@ import com.delfinigiacomo.model.UserInfo;
 import com.delfinigiacomo.dao.UserDAO;
 import com.delfinigiacomo.model.Account;
 
+//E' la classe che mi permette di conoscere i dettagli dell'utente registrato nel db
+
 @Component
 public class RestUserDetailService implements UserDetailsService
 {
@@ -27,11 +29,11 @@ public class RestUserDetailService implements UserDetailsService
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
 	{
 		// Load user's information from the database ...
-		com.delfinigiacomo.model.Account account;
+		Account account;
 		
 		try
 		{
-			account = userDAO.findByUsername(username);
+			account = userDAO.findByUsername(username);  //TROVO L'UTENTE ATTRAVERSO L'USERNAME
 		}
 		catch(Exception x)
 		{
@@ -62,10 +64,13 @@ public class RestUserDetailService implements UserDetailsService
 					true, // Is account not Expired ...
 					true, // Is credential not expired ...
 					true,	// Is not locked ...
-					getAuthorities(role));
+					getAuthorities(role)); //IN QUESTO MODO DO' IL RUOLO ALL'UTENTE E CHIAMO IL METODO UTILE ADD AGGIUNGERE
+					//AD AUTHLIST IL RUOLO SPECIFICO DELL'UTENTE
+	
 		} 
 		else 
 		{
+			//SE CI STA UN ERRORE LANCIAMO UNA USERNAMENOTFOUNDEXCEPTION
 			throw new UsernameNotFoundException("Could not find the user '" + username + "'");
 		}
 	}

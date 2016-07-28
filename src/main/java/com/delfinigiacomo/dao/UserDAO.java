@@ -41,29 +41,7 @@ public class UserDAO
 		return users;	
 	}
 	
-	public List<Movie> getMoviesUserByActor(String email, String actor)
-	{
-				
-		StringBuilder query = new StringBuilder("SELECT idMov,author,title FROM movies m, use_mov um ")
-			                                .append("WHERE m.id=um.idMov AND um.emause=? AND m.id IN (")
-			                                .append("SELECT idMov FROM actors a, act_mov am ")
-			                                .append("WHERE a.id = am.idAct AND a.name=?)");		 
-		
-		List<Movie> movies = jdbcTemplate.query(query.toString(),new Object[]{email,actor}, new RowMapper<Movie>(){
-			public Movie mapRow(ResultSet rs, int num) throws SQLException
-			{
-					
-				Movie m=new Movie();
-				m.setId(rs.getInt("idMov"));
-				m.setAuthor(rs.getString("author"));
-				m.setTitle(rs.getString("title"));
-				
-				return m;
-			}
-		});
-		
-		return movies;	
-	}
+	
 	
 	public Account findByUsername(String username) 
 	{
